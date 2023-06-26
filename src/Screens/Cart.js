@@ -26,7 +26,7 @@ export default Cart = () => {
                 renderItem={_renderItem}
                 keyExtractor={key => key.id}
             />
-            <Text>Hi</Text>
+            
         </View>
     );
 }
