@@ -12,7 +12,7 @@ export default Cart = () => {
         console.log('cartData', cartData);
     }, [])
 
-    const _renderItem = (item) => {
+    const _renderItem = ({item}) => {
         return (
             <View>
                 <Text>{item.name}</Text>
@@ -22,7 +22,7 @@ export default Cart = () => {
     return (
         <View style={styles.mainContainer}>
             <FlatList
-                data={cartData.Cart}
+                data={cartData.cart}
                 renderItem={_renderItem}
                 keyExtractor={key => key.id}
             />
