@@ -3,7 +3,7 @@ import { View, Text, StyleSheet,Image,TouchableOpacity } from 'react-native';
 import constants from '../constants'
 
 export default ProductListItem = (props) => {
-    const { data,onPress } = props;
+    const { data,onPress,isCart=false } = props;
     return (
         <TouchableOpacity 
         activeOpacity={0.5}
@@ -21,7 +21,10 @@ export default ProductListItem = (props) => {
                 <Text style={styles.otherdata}>size:{data.size}</Text>
                 <Text style={styles.otherdata}>Brand:{data.Brand}</Text>
                 <Text style={styles.otherdata}>{data.price}</Text>
-                {/* <Text style={styles.name}>{data.name}</Text> */}
+                {isCart &&
+                 <Text style={styles.otherdata}>OTY: {data.OTY}</Text> 
+                }
+                
             </View>
 
         </TouchableOpacity>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
+import React ,{useRef}from 'react';
+import { View, Text, Button,StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Product from '../Screens/Product';
@@ -8,10 +8,21 @@ import Cart from '../Screens/Cart';
 
 const Stack = createStackNavigator()
 export default Mainnavigator = () => {
+
+  let NavigationRef = useRef();
   return (
-    <NavigationContainer>
+    <NavigationContainer 
+    ref={NavigationRef}>
       <Stack.Navigator >
-        <Stack.Screen name='Product' component={Product} />
+        <Stack.Screen name='Product' component={Product} options={{
+          headerRight: ()=>(
+            <View style={styles.rightHeaderView}>
+              <Button title='Cart' onPress={()=>{
+                NavigationRef.current.navigate('Cart')
+              }}/>
+            </View>
+          )
+        }} />
         <Stack.Screen name='ProductDetails' component={ProductDetails} options={{
           title: 'Product Detail',
           // headerRight: (
@@ -27,3 +38,9 @@ export default Mainnavigator = () => {
     </NavigationContainer>
   );
 }
+
+const styles =StyleSheet.create({
+  rightHeaderView:{
+    marginRight:10
+  }
+})

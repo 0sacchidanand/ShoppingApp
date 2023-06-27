@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView,SafeAreaView , TouchableOpacity,} from 'react-native';
 import Constants from '../constants';
 import {useDispatch,useSelector} from 'react-redux';
-import * as TYPE from '../store/type'
+import * as TYPE from '../store/type';
+import components from '../components';
+
 
 
 export default ProductDetails = ({ navigation, route }) => {
@@ -38,6 +40,11 @@ export default ProductDetails = ({ navigation, route }) => {
                     >
                         <Text style={{color:'#000'}}>Add to Card</Text>
                     </TouchableOpacity>
+
+                    {/* <components.AppButton
+                     title={'Add to Cart'}
+                     onPress={addToCart}
+                    /> */}
                 </View>
             </ScrollView>
             <SafeAreaView/>

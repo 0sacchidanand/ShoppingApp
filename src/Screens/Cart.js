@@ -4,6 +4,8 @@ import Constants from '../constants';
 import { useDispatch, useSelector } from 'react-redux';
 import * as TYPE from '../store/type'
 import { create } from 'react-test-renderer';
+import components from '../components';
+import Components from '../components';
 
 export default Cart = () => {
 
@@ -12,11 +14,18 @@ export default Cart = () => {
         console.log('cartData', cartData);
     }, [])
 
-    const _renderItem = ({item}) => {
+    const _renderItem = ({ item }) => {
         return (
-            <View>
-                <Text>{item.name}</Text>
-            </View>
+            <components.ProductListItem
+                data={item}
+                onPress={() => {
+                    // navigation.navigate('ProductDetails', {
+                    //     data: item
+                    // })
+
+                }}
+                isCart = {true}
+            />
         )
     }
     return (
@@ -25,8 +34,17 @@ export default Cart = () => {
                 data={cartData.cart}
                 renderItem={_renderItem}
                 keyExtractor={key => key.id}
+                contentContainerStyle={{paddingHorizontal:20}}
+                ListHeaderComponentStyle={
+                   <Components.AppButton
+                   title={'Checkout'}
+                   onPress={()=>{}}
+                   mainContainerStyle={styles.checkoutButton}
+                   
+                   />
+                }
             />
-            
+
         </View>
     );
 }
@@ -35,5 +53,9 @@ export default Cart = () => {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
+    },
+    checkoutButton:{
+        marginBottom:1
     }
+    
 });
